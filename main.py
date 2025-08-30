@@ -14,9 +14,12 @@ CIRCLE_COLOR = (255, 0, 50)
 TEXT_COLOR = (0, 0, 0)
 FONT = pg.font.SysFont("FreeSans", 20)
 
-# Sound file init
+# Sound/Image file init
 correct_sound = pg.mixer.Sound("correct.mp3")
 error_sound = pg.mixer.Sound("error.mp3")
+settings_img = pg.image.load("settings.png")
+settings_img = pg.transform.scale(settings_img, (40, 40))
+settings_rect = settings_img.get_rect(topright=((WIDTH - 10), 10))
 
 clock = pg.time.Clock()
 
@@ -28,6 +31,11 @@ running = True
 start_time = pg.time.get_ticks()
 time_used = 0
 
+
+
+def open_settings():
+    print("This is a placeholder")
+
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -35,6 +43,10 @@ while running:
         elif event.type == pg.MOUSEBUTTONDOWN:
 
             pos = pg.mouse.get_pos()
+
+            if settings_rect.collidepoint(pos):
+                open_settings()
+                continue
 
             if abs(int(pos[0]) - x) <= 20:
                 if abs(int(pos[1]) - y) <= 20:
@@ -57,6 +69,8 @@ while running:
 
     timer = FONT.render(str(time_used), True, TEXT_COLOR)
     screen.blit(timer, (20, 20))
+
+    screen.blit(settings_img, settings_rect)
 
     pg.display.flip()
     clock.tick(60)
