@@ -15,8 +15,8 @@ TEXT_COLOR = (0, 0, 0)
 FONT = pg.font.SysFont("FreeSans", 20)
 
 # Sound file init
-correct_sound = pg.mixer.Sound("correct_sound.mp3")
-error_sound = pg.mixer.Sound("error_sound.mp3")
+correct_sound = pg.mixer.Sound("correct.mp3")
+error_sound = pg.mixer.Sound("error.mp3")
 
 clock = pg.time.Clock()
 
